@@ -1,15 +1,10 @@
 package com.example.administrator.prepaidcarddemo.ui;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.example.administrator.prepaidcarddemo.Config;
 import com.example.administrator.prepaidcarddemo.R;
-import com.example.administrator.prepaidcarddemo.utils.TimeCount;
 import com.google.zxing.client.android.CaptureActivity;
-
-import static com.vondear.rxtools.view.RxToast.showToast;
 
 /**
  * https://github.com/rubensousa/ViewPagerCards
@@ -38,14 +33,14 @@ public class MainActivity extends BaseActivity {
             switch (resultCode) {
                 case CaptureActivity.RESULT_SUCCESS:
                     String resultSuccess = data.getStringExtra(CaptureActivity.INTENT_KEY_RESULT_SUCCESS);
-                    showToast(resultSuccess);
+                    // showToast(resultSuccess);
                     break;
                 case CaptureActivity.RESULT_FAIL:
                     String resultError = data.getStringExtra(CaptureActivity.INTENT_KEY_RESULT_ERROR);
-                    showToast(resultError);
+                    // showToast(resultError);
                     break;
                 case CaptureActivity.RESULT_CANCLE:
-                    showToast("取消扫码");
+                    // showToast("取消扫码");
                     break;
                 default:
                     break;

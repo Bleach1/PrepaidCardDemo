@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.prepaidcarddemo.R;
@@ -28,12 +29,15 @@ public abstract class BaseActivity extends AppCompatActivity {
     @BindView(R.id.tv_transaction_record)
     TextView tv_transaction_record;
 
+    @BindView(R.id.iv_back)
+    ImageView iv_back;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
-        initDataAndEvent();
         unbinder = ButterKnife.bind(this);
+        initDataAndEvent();
     }
 
     protected abstract int getLayoutId();
@@ -55,8 +59,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void showOrHideBack(boolean b) {
         if (b) {
             tv_back.setVisibility(View.VISIBLE);
+            iv_back.setVisibility(View.VISIBLE);
         } else {
             tv_back.setVisibility(View.GONE);
+            iv_back.setVisibility(View.GONE);
         }
     }
 
