@@ -8,6 +8,7 @@
 
 package com.example.administrator.prepaidcarddemo.widgets;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -40,10 +41,10 @@ public class VerificationCodeInput extends ViewGroup {
 
     private static final String TAG = "VerificationCodeInput";
     private int box = 6;
-    private int boxWidth = 80;
-    private int boxHeight = 100;
-    private int childHPadding = 14;
-    private int childVPadding = 14;
+    private int boxWidth = 100;
+    private int boxHeight = 120;
+    private int childHPadding = 10;
+    private int childVPadding = 10;
     private String inputType = TYPE_PASSWORD;
     private Drawable boxBgFocus = null;
     private Drawable boxBgNormal = null;
@@ -53,9 +54,8 @@ public class VerificationCodeInput extends ViewGroup {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public VerificationCodeInput(Context context, AttributeSet attrs) {
         super(context, attrs);
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.vericationCodeInput);
+        @SuppressLint({"Recycle", "CustomViewStyleable"}) TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.vericationCodeInput);
         box = a.getInt(R.styleable.vericationCodeInput_box, 6);
-
         childHPadding = (int) a.getDimension(R.styleable.vericationCodeInput_child_h_padding, 0);
         childVPadding = (int) a.getDimension(R.styleable.vericationCodeInput_child_v_padding, 0);
         boxBgFocus = a.getDrawable(R.styleable.vericationCodeInput_box_bg_focus);
@@ -64,20 +64,6 @@ public class VerificationCodeInput extends ViewGroup {
         boxWidth = (int) a.getDimension(R.styleable.vericationCodeInput_child_width, boxWidth);
         boxHeight = (int) a.getDimension(R.styleable.vericationCodeInput_child_height, boxHeight);
         initViews();
-
-    }
-
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-
 
     }
 
@@ -97,16 +83,13 @@ public class VerificationCodeInput extends ViewGroup {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s.length() == 0) {
-                } else {
+                if (s.length() != 0) {
                     focus();
                     checkAndCommit();
                 }
-
             }
 
         };
-
 
         OnKeyListener onKeyListener = new OnKeyListener() {
             @Override
@@ -127,7 +110,6 @@ public class VerificationCodeInput extends ViewGroup {
             layoutParams.leftMargin = childHPadding;
             layoutParams.rightMargin = childHPadding;
             layoutParams.gravity = Gravity.CENTER;
-
 
             editText.setOnKeyListener(onKeyListener);
             setBg(editText, false);
@@ -150,8 +132,6 @@ public class VerificationCodeInput extends ViewGroup {
             editText.setEms(1);
             editText.addTextChangedListener(textWatcher);
             addView(editText, i);
-
-
         }
 
 
@@ -207,7 +187,6 @@ public class VerificationCodeInput extends ViewGroup {
         }
         Log.d(TAG, "checkAndCommit:" + stringBuilder.toString());
         if (full) {
-
             if (listener != null) {
                 listener.onComplete(stringBuilder.toString());
                 setEnabled(false);

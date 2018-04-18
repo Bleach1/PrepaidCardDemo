@@ -42,7 +42,7 @@ public class MainActivity extends BaseActivity {
         App.getInstance().putInt("position", mPosition);
         Intent intent = new Intent(this, RechargeActivity.class);
         startActivity(intent);
-        Log.i("ljn", "recharge: "+mPosition);
+        Log.i("ljn", "recharge: " + mPosition);
     }
 
     private int mPosition;
@@ -83,7 +83,7 @@ public class MainActivity extends BaseActivity {
                     return CardFragment.newInstance(1);
                 } else {
 
-                    if (position == App.getInstance().getInt("position") && position != 0) {
+                    if (position == App.getInstance().getInt("position")) {
                         return CardFragment.newInstance(0, App.getInstance().getString("num"));
                     } else {
                         return CardFragment.newInstance(0);
@@ -157,7 +157,6 @@ public class MainActivity extends BaseActivity {
                     Intent intent = new Intent(MainActivity.this, ScanResultActivity.class);
                     intent.putExtra("data", resultSuccess);
                     startActivity(intent);
-                    Log.i("ljn", "onActivityResult: " + resultSuccess);
                     break;
                 case CaptureActivity.RESULT_FAIL:
                     String resultError = data.getStringExtra(CaptureActivity.INTENT_KEY_RESULT_ERROR);
@@ -172,4 +171,9 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        App.getInstance().removeAll("");
+    }
 }

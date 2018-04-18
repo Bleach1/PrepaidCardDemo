@@ -43,5 +43,7 @@ public class App extends Application {
         return data.getString(key, "");
     }
 
-
+    public void removeAll(String key) {
+        edit.remove(key).apply();
+    }
 }
