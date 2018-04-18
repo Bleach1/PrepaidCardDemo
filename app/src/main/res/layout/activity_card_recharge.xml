@@ -32,32 +32,35 @@
         app:layout_constraintTop_toBottomOf="@id/tv_change">
 
         <RadioButton
+            android:id="@+id/rb_one"
             android:layout_width="80dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:background="@drawable/click_bg_normal"
+            android:background="@drawable/num_selector"
             android:button="@null"
             android:gravity="center"
             android:text="¥ 100" />
 
         <RadioButton
+            android:id="@+id/rb_two"
             android:layout_width="80dp"
             android:layout_height="50dp"
             android:layout_marginLeft="15dp"
             android:layout_marginStart="15dp"
             android:layout_weight="1"
-            android:background="@drawable/click_bg_normal"
+            android:background="@drawable/num_selector"
             android:button="@null"
             android:gravity="center"
             android:text="¥ 200" />
 
         <RadioButton
+            android:id="@+id/rb_three"
             android:layout_width="80dp"
             android:layout_height="50dp"
             android:layout_marginLeft="15dp"
             android:layout_marginStart="15dp"
             android:layout_weight="1"
-            android:background="@drawable/click_bg_normal"
+            android:background="@drawable/num_selector"
             android:button="@null"
             android:gravity="center"
             android:text="¥ 300" />

@@ -39,9 +39,9 @@ public class VerificationCodeInput extends ViewGroup {
     private final static String TYPE_PHONE = "phone";
 
     private static final String TAG = "VerificationCodeInput";
-    private int box = 4;
-    private int boxWidth = 60;
-    private int boxHeight = 60;
+    private int box = 6;
+    private int boxWidth = 80;
+    private int boxHeight = 100;
     private int childHPadding = 14;
     private int childVPadding = 14;
     private String inputType = TYPE_PASSWORD;
@@ -54,7 +54,7 @@ public class VerificationCodeInput extends ViewGroup {
     public VerificationCodeInput(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.vericationCodeInput);
-        box = a.getInt(R.styleable.vericationCodeInput_box, 4);
+        box = a.getInt(R.styleable.vericationCodeInput_box, 6);
 
         childHPadding = (int) a.getDimension(R.styleable.vericationCodeInput_child_h_padding, 0);
         childVPadding = (int) a.getDimension(R.styleable.vericationCodeInput_child_v_padding, 0);
@@ -135,8 +135,8 @@ public class VerificationCodeInput extends ViewGroup {
             editText.setLayoutParams(layoutParams);
             editText.setGravity(Gravity.CENTER);
             editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(1)});
-
-            if (TYPE_NUMBER.equals(inputType)) {
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+           /* if (TYPE_NUMBER.equals(inputType)) {
                 editText.setInputType(InputType.TYPE_CLASS_NUMBER);
             } else if (TYPE_PASSWORD.equals(inputType)) {
                 editText.setTransformationMethod(PasswordTransformationMethod.getInstance());
@@ -145,7 +145,7 @@ public class VerificationCodeInput extends ViewGroup {
             } else if (TYPE_PHONE.equals(inputType)) {
                 editText.setInputType(InputType.TYPE_CLASS_PHONE);
 
-            }
+            }*/
             editText.setId(i);
             editText.setEms(1);
             editText.addTextChangedListener(textWatcher);

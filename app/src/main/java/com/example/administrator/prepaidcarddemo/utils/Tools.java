@@ -5,7 +5,8 @@ import android.content.Intent;
 import android.text.TextUtils;
 
 import com.example.administrator.prepaidcarddemo.Config;
-import com.google.zxing.client.android.CaptureActivity;
+import com.example.administrator.prepaidcarddemo.zxing.CaptureActivity;
+
 
 /**
  * Created by asus on 2018/4/13.

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:ver="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#fff">
 
     <ImageView
         android:id="@+id/iv_finish"
@@ -92,10 +93,11 @@
         app:layout_constraintTop_toBottomOf="@id/tv_purse_balance_pay" />
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:id="@+id/iv_arrow"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="30dp"
         android:src="@drawable/arrow"
         app:layout_constraintBottom_toTopOf="@id/v_second_line"
         app:layout_constraintRight_toRightOf="parent"

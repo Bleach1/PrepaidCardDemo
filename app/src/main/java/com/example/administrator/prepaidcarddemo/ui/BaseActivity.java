@@ -1,5 +1,7 @@
 package com.example.administrator.prepaidcarddemo.ui;
 
+import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import com.example.administrator.prepaidcarddemo.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -31,7 +34,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @BindView(R.id.iv_back)
     ImageView iv_back;
+    @OnClick(R.id.tv_back)
+    void finishActivity() {
+        finish();
+    }
 
+    @SuppressLint("CommitPrefEdits")
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
