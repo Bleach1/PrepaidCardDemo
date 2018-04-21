@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -18,6 +19,8 @@ import com.othershe.nicedialog.NiceDialog;
 import com.othershe.nicedialog.ViewConvertListener;
 import com.othershe.nicedialog.ViewHolder;
 
+import java.util.Date;
+
 public class CardRechargeDialogActivity extends AppCompatActivity {
     private TimeCount timeCount;
     private boolean isSuccessOrFail;
@@ -26,6 +29,8 @@ public class CardRechargeDialogActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String data = getIntent().getStringExtra("data");
+        String card = getIntent().getStringExtra("card");
+        String balance = getIntent().getStringExtra("balance");
         NiceDialog.init()
                 .setLayoutId(R.layout.bank_pay_page)
                 .setConvertListener(new ViewConvertListener() {
@@ -44,7 +49,13 @@ public class CardRechargeDialogActivity extends AppCompatActivity {
                             } else {
                                 App.getInstance().putString("num", data);
                                 if (!isSuccessOrFail) {
-                                    startActivity(new Intent(CardRechargeDialogActivity.this, ReChargeSuccessActivity.class));
+
+                                    //充值记录存入数据库
+                                    Log.i("ljn", "充值记录: " + "card:" + card + "balance" + balance + "money" + data + "time" + App.getInstance().getTime());
+                                    Intent intent = new Intent(CardRechargeDialogActivity.this, ReChargeSuccessActivity.class);
+                                    intent.putExtra("num", data);
+                                    startActivity(intent);
+
                                 } else {
                                     startActivity(new Intent(CardRechargeDialogActivity.this, RechargeFailActivity.class));
                                 }

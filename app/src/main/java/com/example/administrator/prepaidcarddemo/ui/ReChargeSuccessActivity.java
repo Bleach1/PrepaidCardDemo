@@ -3,6 +3,7 @@ package com.example.administrator.prepaidcarddemo.ui;
 import android.content.Intent;
 import android.widget.TextView;
 
+import com.example.administrator.prepaidcarddemo.App;
 import com.example.administrator.prepaidcarddemo.R;
 
 import butterknife.BindView;
@@ -35,5 +36,8 @@ public class ReChargeSuccessActivity extends BaseActivity {
         setTitleAndShow("充值成功");
         showOrHideBack(true);
         showOrHideRecord(false);
+        String num = getIntent().getStringExtra("num");
+        tv_money.setText(num);
+        tv_num.setText(App.getInstance().getString("card_num"));
     }
 }

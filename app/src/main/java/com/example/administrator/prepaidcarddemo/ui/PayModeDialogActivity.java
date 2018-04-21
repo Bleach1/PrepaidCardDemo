@@ -33,6 +33,8 @@ public class PayModeDialogActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String data = getIntent().getStringExtra("data");
+        String card = getIntent().getStringExtra("card");
+        String balance = getIntent().getStringExtra("balance");
         multipleItems.add(new MultipleItem(1));
         multipleItems.add(new MultipleItem(2));
         multipleItems.add(new MultipleItem(2));
@@ -51,10 +53,16 @@ public class PayModeDialogActivity extends AppCompatActivity {
                         view.addItemDecoration(new DividerItemDecoration(PayModeDialogActivity.this, DividerItemDecoration.VERTICAL));
                         MultipleItemQuickAdapter multipleItemQuickAdapter = new MultipleItemQuickAdapter(multipleItems);
                         multipleItemQuickAdapter.setOnItemClickListener((adapter, view, position) -> {
-                            if (position == 0 || position == multipleItems.size() - 1) {
+                            if (position == 0) {
+                                finish();
+                                return;
+                            }
+                            if (position == multipleItems.size() - 1) {
                                 return;
                             }
                             Intent intent = new Intent(PayModeDialogActivity.this, CardRechargeDialogActivity.class);
+                            intent.putExtra("card", card);
+                            intent.putExtra("balance", balance);
                             intent.putExtra("data", data);
                             startActivity(intent);
 

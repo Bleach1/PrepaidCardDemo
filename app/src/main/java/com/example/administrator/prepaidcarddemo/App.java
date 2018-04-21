@@ -3,6 +3,13 @@ package com.example.administrator.prepaidcarddemo;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.SharedPreferences;
+import android.widget.LinearLayout;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import io.realm.Realm;
 
 /**
  * Created by asus on 2018/4/13.
@@ -12,7 +19,7 @@ public class App extends Application {
 
     private SharedPreferences data;
     private SharedPreferences.Editor edit;
-    public static App instance;
+    private static App instance;
 
     @SuppressLint("CommitPrefEdits")
     @Override
@@ -21,6 +28,7 @@ public class App extends Application {
         instance = this;
         data = getSharedPreferences("data", MODE_PRIVATE);
         edit = data.edit();
+        Realm.init(this);
     }
 
     public static synchronized App getInstance() {
@@ -45,5 +53,12 @@ public class App extends Application {
 
     public void removeAll(String key) {
         edit.remove(key).apply();
+    }
+
+
+    public String getTime() {
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
+        return simpleDateFormat.format(date);
     }
 }

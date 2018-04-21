@@ -22,7 +22,9 @@ public class ManualInputActivity extends BaseActivity {
         if (TextUtils.isEmpty(num)) {
             Toast.makeText(this, "请输入", Toast.LENGTH_LONG).show();
         } else {
-            startActivity(new Intent(this, EditPswActivity.class));
+            Intent intent = new Intent(this, EditPswActivity.class);
+            intent.putExtra("num", num);
+            startActivity(intent);
         }
     }
 

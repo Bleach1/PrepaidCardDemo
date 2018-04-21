@@ -8,13 +8,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.administrator.prepaidcarddemo.App;
 import com.example.administrator.prepaidcarddemo.R;
 import com.example.administrator.prepaidcarddemo.ui.ManualInputActivity;
 import com.example.administrator.prepaidcarddemo.utils.Tools;
@@ -38,6 +36,7 @@ public class CardFragment extends Fragment implements View.OnClickListener {
     private Unbinder mUnBinder;
     private int type;
     private String num;
+    private String card;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -59,6 +58,7 @@ public class CardFragment extends Fragment implements View.OnClickListener {
         if (arguments != null) {
             type = arguments.getInt("key");
             num = arguments.getString("num");
+            card = arguments.getString("card");
         }
     }
 
@@ -73,9 +73,12 @@ public class CardFragment extends Fragment implements View.OnClickListener {
             TextView tv_num = view.findViewById(R.id.tv_num);
             TextView tv_no = view.findViewById(R.id.tv_no);
             if (!TextUtils.isEmpty(num)) {
-                tv_num.setText("¥ " + num);
-            }
+                tv_no.setText("NO. " + num);
 
+            }
+            if (!TextUtils.isEmpty(card)) {
+                tv_num.setText("¥ " + card);
+            }
         } else {
             view = LayoutInflater.from(getContext()).inflate(R.layout.add_prepaid_card, container, false);
             view.setOnClickListener(this);
@@ -89,10 +92,12 @@ public class CardFragment extends Fragment implements View.OnClickListener {
         mUnBinder.unbind();
     }
 
-    public static CardFragment newInstance(int type, String num) {
+
+    public static CardFragment newInstance(int type, String num, String card) {
         Bundle args = new Bundle();
         args.putInt("key", type);
         args.putString("num", num);
+        args.putString("card", card);
         CardFragment fragment = new CardFragment();
         fragment.setArguments(args);
         return fragment;

@@ -2,6 +2,7 @@ package com.example.administrator.prepaidcarddemo.ui;
 
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -15,6 +16,8 @@ import com.othershe.nicedialog.NiceDialog;
 import com.othershe.nicedialog.ViewConvertListener;
 import com.othershe.nicedialog.ViewHolder;
 
+import java.util.Date;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -27,6 +30,8 @@ public class RechargeActivity extends BaseActivity {
     private String s;
     private String text;
     private BaseNiceDialog show;
+    private String card;
+    private String balance;
 
     @OnClick(R.id.tv_btn_text)
     void determine() {
@@ -43,9 +48,15 @@ public class RechargeActivity extends BaseActivity {
                             holder.setText(R.id.tv_rmb, "¥ " + s);
                             VerificationCodeInput view = holder.getView(R.id.vc_password);
                             view.setOnCompleteListener(content -> {
+
+                                //卡号 充值时间  金额  余额 存入数据库
+                                Log.i("ljn", "充值记录: " + "card:" + card + "balance" + balance + "money" + s + "time" + App.getInstance().getTime());
                                 App.getInstance().putString("num", s);
                                 Intent intent = new Intent(RechargeActivity.this, ReChargeSuccessActivity.class);
+                                intent.putExtra("num", s);
                                 startActivity(intent);
+
+
                             });
 
 
@@ -54,6 +65,8 @@ public class RechargeActivity extends BaseActivity {
                             });
                             holder.setOnClickListener(R.id.iv_arrow, v -> {
                                 Intent intent = new Intent(RechargeActivity.this, PayModeDialogActivity.class);
+                                intent.putExtra("card", card);
+                                intent.putExtra("balance", balance);
                                 intent.putExtra("data", s);
                                 startActivity(intent);
                             });
@@ -86,6 +99,9 @@ public class RechargeActivity extends BaseActivity {
         setTitleAndShow("卡片充值");
         showOrHideBack(true);
         showOrHideRecord(false);
+        Intent intent = getIntent();
+        card = intent.getStringExtra("card");
+        balance = intent.getStringExtra("balance");
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
             RadioButton viewById = group.findViewById(checkedId);
             text = viewById.getText().toString();

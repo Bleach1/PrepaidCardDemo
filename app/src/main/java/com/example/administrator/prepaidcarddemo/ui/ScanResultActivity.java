@@ -11,10 +11,14 @@ import butterknife.OnClick;
 public class ScanResultActivity extends BaseActivity {
 
 
+    private String data;
+
     @OnClick(R.id.btn_determine)
     void onClick() {
         //正确 进入密码界面
-        startActivity(new Intent(this, EditPswActivity.class));
+        Intent intent = new Intent(this, EditPswActivity.class);
+        intent.putExtra("num", data);
+        startActivity(intent);
     }
 
     @BindView(R.id.et_scan)
@@ -28,7 +32,7 @@ public class ScanResultActivity extends BaseActivity {
     @Override
     protected void initDataAndEvent() {
         Intent intent = getIntent();
-        String data = intent.getStringExtra("data");
+        data = intent.getStringExtra("data");
         showOrHideBack(true);
         showOrHideRecord(false);
         text.setText(data);

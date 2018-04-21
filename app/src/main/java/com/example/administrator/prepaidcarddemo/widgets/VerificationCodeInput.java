@@ -64,7 +64,6 @@ public class VerificationCodeInput extends ViewGroup {
         boxWidth = (int) a.getDimension(R.styleable.vericationCodeInput_child_width, boxWidth);
         boxHeight = (int) a.getDimension(R.styleable.vericationCodeInput_child_height, boxHeight);
         initViews();
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)

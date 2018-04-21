@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/round_corners_btn_bg"
         android:gravity="center"
         android:text="充值"
