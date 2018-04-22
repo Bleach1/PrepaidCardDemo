@@ -76,7 +76,7 @@ public class CardRechargeDialogActivity extends AppCompatActivity {
                 .setDimAmount(0.3f)
                 .setShowBottom(false)
                 .setMargin(20)
-                .setHeight(600)
+                //.setHeight(-1)
                 .setOutCancel(false)
                 .show(getSupportFragmentManager());
     }

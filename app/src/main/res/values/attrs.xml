@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="vericationCodeInput">
+    <declare-styleable name="verificationCodeInput">
 
         <attr name="box" format="integer" />
         <attr name="child_h_padding" format="dimension"/>

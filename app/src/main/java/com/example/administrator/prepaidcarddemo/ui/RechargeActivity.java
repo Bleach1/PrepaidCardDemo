@@ -76,7 +76,7 @@ public class RechargeActivity extends BaseActivity {
                     .setDimAmount(0.3f)
                     .setShowBottom(false)
                     .setMargin(20)
-                    .setHeight(400)
+                    //.setHeight(400)
                     .setOutCancel(false)
                     //.setAnimStyle(R.style.DefaultAnimation)
                     .show(getSupportFragmentManager());

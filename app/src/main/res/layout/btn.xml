@@ -11,7 +11,7 @@
     <Button
         android:id="@+id/tv_btn_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:background="@drawable/round_corners_btn_bg"
         android:text="确定"
         android:textColor="#fff"

@@ -1,5 +1,6 @@
 package com.example.administrator.prepaidcarddemo.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.widget.TextView;
 
@@ -31,13 +32,14 @@ public class ReChargeSuccessActivity extends BaseActivity {
         return R.layout.pay_success;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void initDataAndEvent() {
         setTitleAndShow("充值成功");
         showOrHideBack(true);
         showOrHideRecord(false);
         String num = getIntent().getStringExtra("num");
-        tv_money.setText(num);
+        tv_money.setText("¥ "+num);
         tv_num.setText(App.getInstance().getString("card_num"));
     }
 }

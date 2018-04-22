@@ -19,9 +19,7 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextWatcher;
-import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -34,18 +32,12 @@ import com.example.administrator.prepaidcarddemo.R;
 
 public class VerificationCodeInput extends ViewGroup {
 
-    private final static String TYPE_NUMBER = "number";
-    private final static String TYPE_TEXT = "text";
-    private final static String TYPE_PASSWORD = "password";
-    private final static String TYPE_PHONE = "phone";
 
-    private static final String TAG = "VerificationCodeInput";
     private int box = 6;
     private int boxWidth = 100;
     private int boxHeight = 120;
     private int childHPadding = 10;
     private int childVPadding = 10;
-    private String inputType = TYPE_PASSWORD;
     private Drawable boxBgFocus = null;
     private Drawable boxBgNormal = null;
     private Listener listener;
@@ -54,15 +46,15 @@ public class VerificationCodeInput extends ViewGroup {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public VerificationCodeInput(Context context, AttributeSet attrs) {
         super(context, attrs);
-        @SuppressLint({"Recycle", "CustomViewStyleable"}) TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.vericationCodeInput);
-        box = a.getInt(R.styleable.vericationCodeInput_box, 6);
-        childHPadding = (int) a.getDimension(R.styleable.vericationCodeInput_child_h_padding, 0);
-        childVPadding = (int) a.getDimension(R.styleable.vericationCodeInput_child_v_padding, 0);
-        boxBgFocus = a.getDrawable(R.styleable.vericationCodeInput_box_bg_focus);
-        boxBgNormal = a.getDrawable(R.styleable.vericationCodeInput_box_bg_normal);
-        inputType = a.getString(R.styleable.vericationCodeInput_inputType);
-        boxWidth = (int) a.getDimension(R.styleable.vericationCodeInput_child_width, boxWidth);
-        boxHeight = (int) a.getDimension(R.styleable.vericationCodeInput_child_height, boxHeight);
+        @SuppressLint({"Recycle", "CustomViewStyleable"})
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.verificationCodeInput);
+        box = a.getInt(R.styleable.verificationCodeInput_box, 6);
+        childHPadding = (int) a.getDimension(R.styleable.verificationCodeInput_child_h_padding, 0);
+        childVPadding = (int) a.getDimension(R.styleable.verificationCodeInput_child_v_padding, 0);
+        boxBgFocus = a.getDrawable(R.styleable.verificationCodeInput_box_bg_focus);
+        boxBgNormal = a.getDrawable(R.styleable.verificationCodeInput_box_bg_normal);
+        boxWidth = (int) a.getDimension(R.styleable.verificationCodeInput_child_width, boxWidth);
+        boxHeight = (int) a.getDimension(R.styleable.verificationCodeInput_child_height, boxHeight);
         initViews();
     }
 
@@ -117,16 +109,6 @@ public class VerificationCodeInput extends ViewGroup {
             editText.setGravity(Gravity.CENTER);
             editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(1)});
             editText.setInputType(InputType.TYPE_CLASS_NUMBER);
-           /* if (TYPE_NUMBER.equals(inputType)) {
-                editText.setInputType(InputType.TYPE_CLASS_NUMBER);
-            } else if (TYPE_PASSWORD.equals(inputType)) {
-                editText.setTransformationMethod(PasswordTransformationMethod.getInstance());
-            } else if (TYPE_TEXT.equals(inputType)) {
-                editText.setInputType(InputType.TYPE_CLASS_TEXT);
-            } else if (TYPE_PHONE.equals(inputType)) {
-                editText.setInputType(InputType.TYPE_CLASS_PHONE);
-
-            }*/
             editText.setId(i);
             editText.setEms(1);
             editText.addTextChangedListener(textWatcher);
@@ -184,7 +166,6 @@ public class VerificationCodeInput extends ViewGroup {
             }
 
         }
-        Log.d(TAG, "checkAndCommit:" + stringBuilder.toString());
         if (full) {
             if (listener != null) {
                 listener.onComplete(stringBuilder.toString());
@@ -217,7 +198,6 @@ public class VerificationCodeInput extends ViewGroup {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        Log.d(getClass().getName(), "onMeasure");
         int count = getChildCount();
 
         for (int i = 0; i < count; i++) {
@@ -238,7 +218,7 @@ public class VerificationCodeInput extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        Log.d(getClass().getName(), "onLayout");
+
         int childCount = getChildCount();
 
         for (int i = 0; i < childCount; i++) {

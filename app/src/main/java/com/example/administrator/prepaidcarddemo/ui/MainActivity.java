@@ -47,11 +47,14 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.btn_recharge)
     void recharge() {
+        if (mPosition == resulted.size()) {
+            return;
+        }
         App.getInstance().putString("card_num", resulted.get(mPosition).getNum());
         App.getInstance().putInt("position", mPosition);
         Intent intent = new Intent(this, RechargeActivity.class);
-        intent.putExtra("card",resulted.get(mPosition).getNum());
-        intent.putExtra("balance",resulted.get(mPosition).getBalance());
+        intent.putExtra("card", resulted.get(mPosition).getNum());
+        intent.putExtra("balance", resulted.get(mPosition).getBalance());
         startActivity(intent);
         Log.i("ljn", "recharge: " + mPosition);
     }
