@@ -10,7 +10,6 @@
         android:id="@+id/tv_bank_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
         android:gravity="center"
         android:text="平安银行 储蓄卡 (23333)"
         android:textColor="#333"

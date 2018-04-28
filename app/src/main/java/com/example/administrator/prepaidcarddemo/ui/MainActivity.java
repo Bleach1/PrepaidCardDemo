@@ -84,7 +84,7 @@ public class MainActivity extends BaseActivity {
     protected void initDataAndEvent() {
 
         Realm realm = Realm.getDefaultInstance();
-        RealmResults<CardBean> result = realm.where(CardBean.class).findAll();
+      /*  RealmResults<CardBean> result = realm.where(CardBean.class).findAll();
         Log.i("ljn", "initDataAndEvent: " + result.size());
         if (result.size() == 0) {
             BaseDao baseDao = new BaseDao(realm);
@@ -97,15 +97,16 @@ public class MainActivity extends BaseActivity {
                 baseDao.insert(cardBean);
             }
 
-        }
+        }*/
 
         resulted = realm.where(CardBean.class).findAll();
 
         Log.i("ljn", "initDataAndEvent: " + resulted.size());
-
         itemSize = resulted.size() + 1;
         if (itemSize == 1) {
             btn_recharge.setVisibility(View.GONE);
+        } else {
+            btn_recharge.setVisibility(View.VISIBLE);
         }
         App.getInstance().putInt("size", itemSize);
         for (int i = 0; i < itemSize; i++) {
